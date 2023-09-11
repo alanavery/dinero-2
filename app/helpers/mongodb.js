@@ -12,18 +12,22 @@ const createClient = () => {
   });
 };
 
-export const findData = async (collectionName, query) => {
-  let data;
+export const findData = async (requests) => {
   const client = createClient();
 
   try {
+    const data = {};
     const database = client.db('dinero');
-    const collection = database.collection(collectionName);
-    if (query) {
-      data = await collection.findOne(query);
-    } else {
-      data = await collection.find().toArray();
+    for (const request of requests) {
+      const { collectionName, query, singleDocument } = request;
+      const collection = database.collection(collectionName);
+      if (singleDocument) {
+        data[collectionName] = await collection.findOne(query);
+      } else {
+        data[collectionName] = await collection.find(query).toArray();
+      }
     }
+    console.log(data);
     return data;
   } catch (error) {
     console.error(error);

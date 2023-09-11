@@ -1,13 +1,13 @@
 import Link from 'next/link';
-import { findData } from '@/helpers/mongodb';
+import { findData } from '@/app/helpers/mongodb';
 
 const Users = async () => {
-  const users = await findData('users');
+  const data = await findData([{ collectionName: 'users' }]);
 
   return (
     <main>
       <h1>Users</h1>
-      {users.map((user) => {
+      {data.users.map((user) => {
         return (
           <Link href={`/users/${user._id}`} key={user._id}>
             {user.firstName}
