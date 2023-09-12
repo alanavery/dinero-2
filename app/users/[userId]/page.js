@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ObjectId } from 'mongodb';
-import { findData } from '@/app/helpers/mongodb';
+import { findData } from '@/helpers/mongodb';
 
 const User = async ({ params }) => {
   const data = await findData([

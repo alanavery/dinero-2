@@ -1,0 +1,41 @@
+@use 'sass:math';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+@import './global/variables';
+@import './global/functions';
+@import './global/mixins';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: $root;
+}
+
+h1 {
+  text-align: center;
+  color: $white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  background-color: $light-green;
+  font-family: 'Roboto', sans-serif;
+  color: $blue;
+  letter-spacing: 0.01em;
+
+  main {
+    @include rows(resize(20px));
+    padding: $content-padding;
+  }
+}
+
+@import './modules/card';
+@import './modules/button';

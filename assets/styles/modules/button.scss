@@ -1,0 +1,10 @@
+.button {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  border-radius: resize(10px);
+  background-color: $dark-green;
+  padding: resize(20px);
+  display: block;
+  color: $white;
+  font-weight: 700;
+}

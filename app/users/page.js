@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { findData } from '@/app/helpers/mongodb';
+import { findData } from '@/helpers/mongodb';
 
 const Users = async () => {
   const data = await findData([{ collectionName: 'users' }]);

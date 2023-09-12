@@ -1,0 +1,3 @@
+@function resize($px) {
+  @return math.div($px, $root) * 1em;
+}

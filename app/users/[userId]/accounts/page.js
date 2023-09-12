@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { ObjectId } from 'mongodb';
-import { findData } from '@/app/helpers/mongodb';
+import { findData } from '@/helpers/mongodb';
+import Card from '@/components/card';
+import Button from '@/components/button';
 
 const Accounts = async ({ params }) => {
   const data = await findData([
@@ -18,14 +20,18 @@ const Accounts = async ({ params }) => {
   return (
     <main>
       <h1>{`${data.users.firstName}’s Accounts`}</h1>
-      <Link href={`/users/${params.userId}/accounts/add`}>Add Account</Link>
-      {data.accounts.map((account) => {
-        return (
-          <Link href={`/users/${params.userId}/accounts/${account._id}`} key={account._id}>
-            {account.name}
-          </Link>
-        );
-      })}
+
+      <Card>
+        {data.accounts.map((account) => {
+          return (
+            <Link href={`/users/${params.userId}/accounts/${account._id}`} key={account._id}>
+              <div>{account.name}</div>
+            </Link>
+          );
+        })}
+      </Card>
+
+      <Button href={`/users/${params.userId}/accounts/add`}>Add Account</Button>
     </main>
   );
 };
