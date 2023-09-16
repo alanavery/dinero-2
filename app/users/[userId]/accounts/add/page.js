@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import FormTemplate from '@/app/components/form';
+import FormTemplate from '@/components/form-v2';
 
 const AddAccount = ({ params }) => {
   const router = useRouter();
@@ -33,6 +33,7 @@ const AddAccount = ({ params }) => {
           {
             id: 'name',
             label: 'Name',
+            type: 'text',
           },
           {
             id: 'startingBalance',
@@ -41,7 +42,7 @@ const AddAccount = ({ params }) => {
           },
           {
             id: 'creditAccount',
-            label: 'Credit Account?',
+            label: 'Credit Account',
             type: 'boolean',
           },
           {

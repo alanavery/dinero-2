@@ -21,15 +21,17 @@ const Accounts = async ({ params }) => {
     <main>
       <h1>{`${data.users.firstName}’s Accounts`}</h1>
 
-      <Card>
-        {data.accounts.map((account) => {
-          return (
-            <Link href={`/users/${params.userId}/accounts/${account._id}`} key={account._id}>
-              <div>{account.name}</div>
-            </Link>
-          );
-        })}
-      </Card>
+      {data.accounts.length > 0 && (
+        <Card>
+          {data.accounts.map((account) => {
+            return (
+              <Link href={`/users/${params.userId}/accounts/${account._id}/transactions`} key={account._id}>
+                <div>{account.name}</div>
+              </Link>
+            );
+          })}
+        </Card>
+      )}
 
       <Button href={`/users/${params.userId}/accounts/add`}>Add Account</Button>
     </main>

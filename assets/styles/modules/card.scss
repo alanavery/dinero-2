@@ -1,18 +1,17 @@
 .card {
   @include rows();
   width: 100%;
-  max-width: $content-max-width;
-  box-shadow: 0 resize(5px) resize(5px) rgba($color: $black, $alpha: 0.2);
+  box-shadow: 0 5px 5px rgba($color: $black, $alpha: 0.2);
   margin: 0 auto;
-  border-radius: resize(10px);
+  border-radius: 10px;
   background-color: $white;
 
   a {
     flex: 1;
-    padding: 0 resize(20px);
+    padding: 0 20px;
 
     div {
-      padding: resize(20px) 0;
+      padding: 20px 0;
     }
 
     &:not(:last-child) {

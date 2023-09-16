@@ -1,22 +1,31 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Cleave from 'cleave.js/react';
+import { TextField, InputLabel, OutlinedInput, InputAdornment } from '@mui/material';
 
 const FormTemplate = ({ fields, handleSubmit }) => {
   const initialValues = {};
   const validationSchema = {};
 
-  const CurrencyInput = ({ id, form: { values } }) => (
-    <Cleave
-      options={{
-        numeral: true,
-        signBeforePrefix: true,
-        prefix: '$',
-        rawValueTrimPrefix: true,
-      }}
-      onChange={(event) => (values[id] = Number(event.target.rawValue))}
-    />
+  const TextInput = (props) => <TextField {...props} />;
+  const CurrencyInput = (props) => (
+    <>
+      <InputLabel />
+      <OutlinedInput {...props} />
+    </>
   );
+
+  // const CurrencyInput = ({ id, form: { values } }) => (
+  //   <Cleave
+  //     options={{
+  //       numeral: true,
+  //       signBeforePrefix: true,
+  //       prefix: '$',
+  //       rawValueTrimPrefix: true,
+  //     }}
+  //     onChange={(event) => (values[id] = Number(event.target.rawValue))}
+  //   />
+  // );
 
   fields.forEach(({ id, type }) => {
     if (type === 'boolean') {
@@ -35,24 +44,26 @@ const FormTemplate = ({ fields, handleSubmit }) => {
   return (
     <Formik initialValues={initialValues} validationSchema={Yup.object().shape(validationSchema)} onSubmit={(values) => handleSubmit(values)}>
       {({ errors, touched }) => (
-        <Form>
+        <Form className="form">
           {fields.map(({ id, label, type }) => (
-            <div className="form-control" key={id}>
-              {type === 'boolean' ? (
+            <div className={`form__control control--${id}`} key={id}>
+              {type === 'boolean' && (
                 <label>
                   <Field type="checkbox" name={id} />
                   {label}
                 </label>
-              ) : (
-                <>
-                  <label htmlFor={id}>{label}</label>
-                  <Field type="text" id={id} name={id} component={type === 'currency' ? CurrencyInput : null} />
-                </>
               )}
-              {errors[id] && touched[id] ? <div>{errors[id]}</div> : null}
+
+              {type === 'text' && <Field type="text" name={id} id="outlined-basic" label={label} as={TextInput} />}
+
+              {type === 'currency' && <Field type="text" name={id} id="outlined-adornment-amount" label={label} startAdornment={<InputAdornment position="start">$</InputAdornment>} as={CurrencyInput} />}
+
+              {errors[id] && touched[id] ? <div className="form__error">{errors[id]}</div> : null}
             </div>
           ))}
-          <button type="submit">Submit</button>
+          <button type="submit" className="button">
+            Submit
+          </button>
         </Form>
       )}
     </Formik>

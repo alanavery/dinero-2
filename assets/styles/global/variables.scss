@@ -1,15 +1,13 @@
 // Sizes
-$content-padding: 20px;
-$content-max-width: 390px - ($content-padding * 2);
+$max-width: 390px;
+$padding: 20px;
+$resize-ratio: 0.5;
 
 // Colors
 $blue: #342b50;
-$light-green: #00a38f;
+$light-green: #eefffd;
 $dark-green: #1b8381;
-$light-gray: #d7d8d8;
+$light-gray: #8d9096;
 $dark-gray: #6b6c72;
 $white: #fff;
-$black: #000;
-
-// Typography
-$root: 18px;
+$black: #393a3d;
